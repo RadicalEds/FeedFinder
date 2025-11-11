@@ -60,6 +60,7 @@ $(echo -n "	$DESCRIPTION" | fmt -w $(tput cols))
 
 $(c $HIGHLIGHT)USAGE$(c n): $PROGRAM [-h] [-c] <URL/Domain/List...>
 
+	-r : include patterns that resulted in a redirection
 	-c : continue checking patterns after a feed is found
 	-h : show usage
 
@@ -94,10 +95,11 @@ statusline () {
 #####################################
 # Arguments
 
-while getopts "hc" o;do
+while getopts "hcr" o;do
 	case "${o}" in
 		(h) usage && exit;;
 		(c) continue_if_found="true";;
+		(r) include_redirects="true";;
 		(*) echo "Try Using $PROGRAM -h for Help And Information" >&2 && exit 1;;
 	esac
 done
@@ -113,6 +115,7 @@ shift $((OPTIND-1))
 validate () {
 	local data="$1"
 	local response="$(sed -n 1p <<< "$data")"
+	[ "$include_redirects" ] && [[ "$response" =~ 302 ]] && response="200"
 	[[ ! "$response" =~ 200 ]] && return 1
 	local content_type="$(grep "content-type" <<< "$data")"
 	[[ ! "$content_type" =~ application ]] && return 1
