@@ -17,4 +17,6 @@ Searches are made by sending a HEAD request and parsing the response code and th
 (note that these patterns arent solely specific to their listed platform)
 
 
-![demonstration](https://cdn.discordapp.com/attachments/1434270963977031690/1437667605723873340/a.gif?ex=691413cb&is=6912c24b&hm=34bbec61fd4cde75bd2bb88419ef801b8931557050f59f06f158181d4e3ab8b0&)
+![demonstration](https://cdn.discordapp.com/attachments/1434270963977031690/1437674312864628819/a.gif?ex=69141a0a&is=6912c88a&hm=044ac587c83fd4ab3b2074458d50a3bbf6998859376e1109b94920e9d38addbd&)
+
+
